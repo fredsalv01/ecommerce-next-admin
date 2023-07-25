@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import { StoreModal } from "./store-modal";
 import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
 
