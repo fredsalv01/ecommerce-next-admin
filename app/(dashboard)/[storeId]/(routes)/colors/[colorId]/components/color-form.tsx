@@ -25,9 +25,7 @@ import { AlertModal } from "@/components/modals/alert-modal";
 
 const formSchema = z.object({
   name: z.string().min(1),
-  value: z.string().min(4).regex(/^#/, {
-    message: "String must be a valid hex color",
-  }),
+  value: z.string().min(4),
 });
 
 type ColorFormValues = z.infer<typeof formSchema>;
@@ -64,6 +62,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
           data
         );
       } else {
+        console.log(data);
         await axios.post(`/api/${params.storeId}/colors`, data);
       }
       router.refresh();
@@ -149,7 +148,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Color value"
+                      placeholder="Color value" 
                       className="w-60"
                       type="color"
                       {...field}
