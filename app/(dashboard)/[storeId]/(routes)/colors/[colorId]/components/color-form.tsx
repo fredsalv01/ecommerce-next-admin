@@ -58,14 +58,17 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
   const onSubmit = async (data: ColorFormValues) => {
     try {
       setLoading(true);
-      if(initialData){
-        await axios.patch(`/api/${params.storeId}/colors/${params.colorsId}`, data);
-      }else{
+      if (initialData) {
+        await axios.patch(
+          `/api/${params.storeId}/colors/${params.colorsId}`,
+          data
+        );
+      } else {
         await axios.post(`/api/${params.storeId}/colors`, data);
       }
       router.refresh();
       toast.success(toastMessage);
-      router.push(`/${params.storeId}/colors`)
+      router.push(`/${params.storeId}/colors`);
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
@@ -81,7 +84,9 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
       toast.success("Colors deleted.");
       router.push(`/${params.storeId}/colors`);
     } catch (error) {
-      toast.error("Make sure you removed all categories using this colors first.");
+      toast.error(
+        "Make sure you removed all categories using this colors first."
+      );
     } finally {
       setLoading(false);
       setOpen(false);
@@ -145,6 +150,8 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
                     <Input
                       disabled={loading}
                       placeholder="Color value"
+                      className="w-60"
+                      type="color"
                       {...field}
                     />
                   </FormControl>
