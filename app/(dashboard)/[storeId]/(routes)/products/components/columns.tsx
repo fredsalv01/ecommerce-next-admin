@@ -23,6 +23,11 @@ export const columns: ColumnDef<ProductColumn>[] = [
   {
     accessorKey: "isArchived",
     header: "Archived",
+    // cell: ({row}) => (
+    //   <p className={`${row.original.isArchived ? "text-green-500" : "text-red-500"}`}>
+    //     {row.original.}
+    //   </p>
+    // )
   },
   {
     accessorKey: "isFeatured",
@@ -42,7 +47,7 @@ export const columns: ColumnDef<ProductColumn>[] = [
   },
   {
     accessorKey: "color",
-    header: "Size",
+    header: "Color",
     cell: ({ row }) => (
       <div
         className="w-6 h-6 rounded-full border border-gray-400"
