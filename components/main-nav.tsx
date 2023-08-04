@@ -33,13 +33,18 @@ function MainNav({
     },
     {
       href: `/${params.storeId}/colors`,
-      label: "Colores ",
+      label: "Colores",
       active: pathname === `/${params.storeId}/colors`,
     },
     {
       href: `/${params.storeId}/products`,
-      label: "Productos ",
+      label: "Productos",
       active: pathname === `/${params.storeId}/products`,
+    },
+    {
+      href: `/${params.storeId}/orders`,
+      label: "Ordenes",
+      active: pathname === `/${params.storeId}/orders`,
     },
     {
       href: `/${params.storeId}/settings`,
