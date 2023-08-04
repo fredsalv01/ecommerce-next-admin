@@ -59,10 +59,10 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
     },
   });
 
-  const title = initialData ? "Edit Category" : "Create category";
-  const description = initialData ? "Edit Category" : "Add a new category";
-  const toastMessage = initialData ? "Category updated." : "Category created";
-  const action = initialData ? "Save changes" : "Create";
+  const title = initialData ? "Editar Categoria" : "Crear categoria";
+  const description = initialData ? "Editar Categoria" : "Agregar nueva categoria";
+  const toastMessage = initialData ? "Categoria updated." : "Categoria creada";
+  const action = initialData ? "Guardar cambios" : "Crear";
 
   const onSubmit = async (data: CategoryFormValues) => {
     try {
@@ -79,7 +79,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
       toast.success(toastMessage);
       router.push(`/${params.storeId}/categories`);
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Ha ocurrido un error. Contacta al equipo de soporte o intenta nuevamente");
     } finally {
       setLoading(false);
     }
@@ -92,11 +92,11 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
         `/api/${params.storeId}/categories/${params.categoryId}`
       );
       router.refresh();
-      toast.success("Category deleted.");
+      toast.success("Categoria eliminada.");
       router.push(`/${params.storeId}/categories`);
     } catch (error) {
       toast.error(
-        "Make sure you removed all products using this category first."
+        "Asegurate de haber eliminado antes todos los productos que usen esta categoria."
       );
     } finally {
       setLoading(false);
@@ -139,11 +139,11 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Nombre</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Category name"
+                      placeholder="Nombre de categoria"
                       {...field}
                     />
                   </FormControl>
@@ -156,7 +156,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
               name="billboardId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Billboard</FormLabel>
+                  <FormLabel>Imagen promocional</FormLabel>
                   <FormControl>
                     <Select
                       disabled={loading}
@@ -164,10 +164,10 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                       value={field.value}
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="w-[180px]">
+                      <SelectTrigger className="w-[380px]">
                         <SelectValue
                           defaultValue={field.value}
-                          placeholder="Select a billboard"
+                          placeholder="Selecciona una imagen promocional"
                         />
                       </SelectTrigger>
                       <SelectContent>

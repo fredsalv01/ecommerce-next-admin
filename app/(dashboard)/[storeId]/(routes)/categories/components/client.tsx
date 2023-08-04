@@ -23,14 +23,14 @@ const CategoryClient: React.FC<CategoryClientProps> = ({
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Categories (${data.length})`}
-          description="Manage categories for your store"
+          title={`Categorias (${data.length})`}
+          description="Administra categorias para tu tienda"
         />
         <Button
           onClick={() => router.push(`/${params.storeId}/categories/new`)}
         >
           <Plus className="mr-2 h-4 w-4" />
-          Add New
+          Agregar Nuevo
         </Button>
       </div>
       <Separator />
@@ -38,10 +38,11 @@ const CategoryClient: React.FC<CategoryClientProps> = ({
         columns={columns}
         data={data}
         searchKey="name"
+        searchKeyEsp="nombre"
       />
       <Heading
         title="API"
-        description="API calls for Categories"
+        description="Llamada del API para Categorias"
       />
       <Separator />
 

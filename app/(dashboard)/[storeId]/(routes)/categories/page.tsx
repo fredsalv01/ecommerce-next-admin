@@ -3,6 +3,7 @@ import React from "react";
 import CategoryClient from "./components/client";
 import prismadb from "@/lib/prismadb";
 import { CategoryColumn } from "./components/columns";
+import { es } from "date-fns/locale";
 
 const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
   const categories = await prismadb.category.findMany({
@@ -21,7 +22,9 @@ const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
     id: item.id,
     name: item.name,
     billboardLabel: item.billboard.label,
-    createdAt: format(item.createdAt, "MMMM do, yyyy - HH:mm"),
+    createdAt: format(item.createdAt, "MMMM d, yyyy - HH:mm:ss aaaaa'm'", {
+      locale: es,
+    }),
   }));
 
   return (
