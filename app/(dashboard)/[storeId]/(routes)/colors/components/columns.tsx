@@ -20,7 +20,7 @@ export const columns: ColumnDef<ColorColumn>[] = [
     header: "Value",
     cell: ({ row }) => (
       <div
-        className="w-8 h-8 rounded-full"
+        className="w-8 h-8 rounded-full border border-gray-400"
         style={{ backgroundColor: row.original.value }}
       />
     ),
