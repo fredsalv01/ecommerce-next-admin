@@ -45,7 +45,7 @@ export const columns: ColumnDef<ProductColumn>[] = [
     header: "Size",
     cell: ({ row }) => (
       <div
-        className="w-6 h-6 rounded-full border"
+        className="w-6 h-6 rounded-full border border-gray-400"
         style={{ backgroundColor: row.original.color }}
       />
     ),
