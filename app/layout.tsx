@@ -9,8 +9,8 @@ import {esES} from '@clerk/localizations'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Admin Dashboard",
-  description: "Admin Dashboard",
+  title: "Administrador de Tienda",
+  description: "Administrador para la tienda MamaCanguro puedes administrar tiendas, categorias, productos y mucho más.",
 };
 
 export default function RootLayout({
