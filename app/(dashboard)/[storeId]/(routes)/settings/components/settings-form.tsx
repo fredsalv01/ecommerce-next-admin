@@ -52,9 +52,9 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
       setLoading(true);
       await axios.patch(`/api/stores/${params.storeId}`, data);
       router.refresh();
-      toast.success("Store updated.");
+      toast.success("Tienda actualizada.");
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Ha ocurrido un error. Contacta al equipo de soporte o intenta nuevamente.");
     } finally {
       setLoading(false);
     }
@@ -66,9 +66,9 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
       await axios.delete(`/api/stores/${params.storeId}`);
       router.refresh();
       router.push("/");
-      toast.success("Store deleted.");
+      toast.success("Tienda eliminada.");
     } catch (error) {
-      toast.error("Make sure you removed all products and categories first.");
+      toast.error("Asegurate de haber eliminado todos los productos antes.");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -84,7 +84,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
         loading={loading}
       />
       <div className="flex items-center justify-between">
-        <Heading title="Settings" description="Manage store preferences" />
+        <Heading title="Configuración" description="Administra las preferencias de tu tienda" />
         <Button variant="destructive" size="sm" onClick={() => setOpen(true)}>
           <Trash className="h-4 w-4" />
         </Button>
@@ -101,7 +101,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Nombre</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
@@ -115,7 +115,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
             />
           </div>
           <Button disabled={loading} className="ml-auto" type="submit">
-            Save changes
+            Guardar cambios
           </Button>
         </form>
       </Form>
