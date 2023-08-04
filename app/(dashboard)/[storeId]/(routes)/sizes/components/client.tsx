@@ -23,14 +23,14 @@ const SizeClient: React.FC<SizeClientProps> = ({
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Sizes (${data.length})`}
-          description="Manage sizes for your store"
+          title={`Tallas/Tamaños (${data.length})`}
+          description="Administra las Tallas/Tamaños de tu tienda."
         />
         <Button
           onClick={() => router.push(`/${params.storeId}/sizes/new`)}
         >
           <Plus className="mr-2 h-4 w-4" />
-          Add New
+          Agregar nuevo
         </Button>
       </div>
       <Separator />
@@ -38,10 +38,11 @@ const SizeClient: React.FC<SizeClientProps> = ({
         columns={columns}
         data={data}
         searchKey="name"
+        searchKeyEsp="nombre"
       />
       <Heading
         title="API"
-        description="API calls for Sizes"
+        description="Llamadas al API de tallas/tamaños"
       />
       <Separator />
 

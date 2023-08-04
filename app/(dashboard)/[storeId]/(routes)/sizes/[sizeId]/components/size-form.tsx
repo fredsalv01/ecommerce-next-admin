@@ -40,10 +40,10 @@ const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? "Edit Sizes" : "Create sizes";
-  const description = initialData ? "Edit Sizes" : "Add a new sizes";
-  const toastMessage = initialData ? "Sizes updated." : "Sizes created";
-  const action = initialData ? "Save changes" : "Create";
+  const title = initialData ? "Editar talla o tamaño" : "Crear talla o tamaño";
+  const description = initialData ? "Editar talla o tamaño" : "Agregar nueva talla o tamaño";
+  const toastMessage = initialData ? "Talla o tamaño actualiado." : "Talla o tamaño creado";
+  const action = initialData ? "Guardar cambios" : "Crear";
 
   const form = useForm<SizeFormValues>({
     resolver: zodResolver(formSchema),
@@ -57,15 +57,16 @@ const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
     try {
       setLoading(true);
       if(initialData){
-        await axios.patch(`/api/${params.storeId}/sizes/${params.sizesId}`, data);
+        await axios.patch(`/api/${params.storeId}/sizes/${params.sizeId}`, data);
       }else{
         await axios.post(`/api/${params.storeId}/sizes`, data);
       }
+      console.log('now stop')
       router.refresh();
       toast.success(toastMessage);
       router.push(`/${params.storeId}/sizes`)
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Ha ocurrido un error. Contacta al equipo de soporte o intenta nuevamente");
     } finally {
       setLoading(false);
     }
@@ -76,10 +77,10 @@ const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
       setLoading(true);
       await axios.delete(`/api/${params.storeId}/sizes/${params.sizesId}`);
       router.refresh();
-      toast.success("Sizes deleted.");
+      toast.success("Talla o tamaño eliminada.");
       router.push(`/${params.storeId}/sizes`);
     } catch (error) {
-      toast.error("Make sure you removed all categories using this sizes first.");
+      toast.error("Asegurate de haber eliminado todos los tamaños que usan esta talla antes.");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -121,11 +122,11 @@ const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Nombre</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Size name"
+                      placeholder="Nombre de la talla"
                       {...field}
                     />
                   </FormControl>
@@ -138,11 +139,11 @@ const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
               name="value"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Value</FormLabel>
+                  <FormLabel>Talla</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Size value"
+                      placeholder="Talla"
                       {...field}
                     />
                   </FormControl>
