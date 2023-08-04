@@ -4,6 +4,7 @@ import BillboardClient from "./components/client";
 import prismadb from "@/lib/prismadb";
 import { ProductColumn } from "./components/columns";
 import { formatter } from "@/lib/utils";
+import { es } from "date-fns/locale";
 
 const ProductsPage = async ({ params }: { params: { storeId: string } }) => {
   const products = await prismadb.product.findMany({
@@ -29,7 +30,9 @@ const ProductsPage = async ({ params }: { params: { storeId: string } }) => {
     category: item.category.name,
     size: item.size.value,
     color: item.color.value,
-    createdAt: format(item.createdAt, "MMMM do, yyyy - HH:mm"),
+    createdAt: format(item.createdAt, "MMMM d, yyyy - HH:mm:ss aaaaa'm'", {
+      locale: es,
+    }),
   }));
 
   return (

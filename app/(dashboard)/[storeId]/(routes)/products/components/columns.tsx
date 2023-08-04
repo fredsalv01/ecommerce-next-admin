@@ -31,7 +31,7 @@ export const columns: ColumnDef<ProductColumn>[] = [
   },
   {
     accessorKey: "isFeatured",
-    header: "Mostrar al inicio",
+    header: "¿Mostrar al inicio?",
     cell: ({row}) => (
       <p className={`${row.original.isFeatured ? "text-green-500" : "text-red-500"} font-semibold`}>
         {row.original.isFeatured ? 'Si' : 'No'}
@@ -48,7 +48,7 @@ export const columns: ColumnDef<ProductColumn>[] = [
   },
   {
     accessorKey: "size",
-    header: "Tamaño",
+    header: "Talla",
   },
   {
     accessorKey: "color",

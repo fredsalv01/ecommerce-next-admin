@@ -28,7 +28,7 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("Product Id copied to the clipboard");
+    toast.success("Id copiado al portapapeles");
   };
 
   const onDelete = async () => {
@@ -36,10 +36,10 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
       setLoading(true);
       await axios.delete(`/api/${params.storeId}/products/${data.id}`);
       router.refresh();
-      toast.success("Product deleted.");
+      toast.success("Producto eliminado.");
     } catch (error) {
       toast.error(
-        "Something went wrong. Please try again or contact our support team"
+        "Ha ocurrido un error. Contacta al equipo de soporte o intenta nuevamente."
       );
     } finally {
       setLoading(false);
@@ -58,18 +58,18 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant={"ghost"} className="h-8 w-8 p-0">
-            <span className="sr-only">Open menu</span>
+            <span className="sr-only">Abrir menu</span>
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuLabel>Acciones</DropdownMenuLabel>
           <DropdownMenuItem
             onClick={() => onCopy(data.id)}
             className="gap-2 cursor-pointer"
           >
             <Copy className="mr-2 w-4 h-4" />
-            Copy Id
+            Copiar Id
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
@@ -78,14 +78,14 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
             className="gap-2 cursor-pointer"
           >
             <Edit className="mr-2 w-4 h-4" />
-            Update
+            Actualizar
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => setOpen(true)}
             className="gap-2 cursor-pointer"
           >
             <Trash className="mr-2 w-4 h-4" />
-            Delete
+            Borrar
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -91,17 +91,17 @@ const ProductForm: React.FC<ProductFormProps> = ({
         },
   });
 
-  const title = initialData ? "Edit product" : "Create product";
-  const description = initialData ? "Edit product" : "Add a new product";
-  const toastMessage = initialData ? "Product updated." : "Product created";
-  const action = initialData ? "Save changes" : "Create";
+  const title = initialData ? "Editar producto" : "Crear producto";
+  const description = initialData ? "Editar producto" : "Agregar nuevo producto";
+  const toastMessage = initialData ? "Producto actualizado." : "Producto creado";
+  const action = initialData ? "Guardar cambios" : "Crear";
 
   const onSubmit = async (data: ProductFormValues) => {
     try {
       setLoading(true);
       if (initialData) {
         await axios.patch(
-          `/api/${params.storeId}/products/${params.billboardId}`,
+          `/api/${params.storeId}/products/${params.productId}`,
           data
         );
       } else {
@@ -111,7 +111,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
       toast.success(toastMessage);
       router.push(`/${params.storeId}/products`);
     } catch (error) {
-      toast.error("Something went wrong. Please try again or contact support.");
+      toast.error("Ha ocurrido un error. Contacta al equipo de soporte o intenta nuevamente.");
     } finally {
       setLoading(false);
     }
@@ -121,13 +121,13 @@ const ProductForm: React.FC<ProductFormProps> = ({
     try {
       setLoading(true);
       await axios.delete(
-        `/api/${params.storeId}/products/${params.billboardId}`
+        `/api/${params.storeId}/products/${params.productId}`
       );
       router.refresh();
-      toast.success("Product deleted.");
+      toast.success("Producto eliminado.");
       router.push(`/${params.storeId}/products`);
     } catch (error) {
-      toast.error("Something went wrong. Please try again or contact support.");
+      toast.error("Ha ocurrido un error. Contacta al equipo de soporte o intenta nuevamente.");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -168,7 +168,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
             name="images"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Images</FormLabel>
+                <FormLabel>Imagenes</FormLabel>
                 <FormControl>
                   <ImageUpload
                     value={field.value?.map((image) => image.url)}
@@ -193,11 +193,11 @@ const ProductForm: React.FC<ProductFormProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Nombre</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Product name"
+                      placeholder="Nombre del producto"
                       {...field}
                     />
                   </FormControl>
@@ -210,12 +210,12 @@ const ProductForm: React.FC<ProductFormProps> = ({
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Price</FormLabel>
+                  <FormLabel>Precio</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       disabled={loading}
-                      placeholder="9.99"
+                      placeholder="S/ 9.99"
                       {...field}
                     />
                   </FormControl>
@@ -228,7 +228,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
               name="categoryId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Category</FormLabel>
+                  <FormLabel>Categoria</FormLabel>
                   <FormControl>
                     <Select
                       disabled={loading}
@@ -236,10 +236,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
                       value={field.value}
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="w-[180px]">
+                      <SelectTrigger className="w-[280px]">
                         <SelectValue
                           defaultValue={field.value}
-                          placeholder="Select a category"
+                          placeholder="Selecciona una categoria"
                         />
                       </SelectTrigger>
                       <SelectContent>
@@ -268,10 +268,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
                       value={field.value}
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="w-[180px]">
+                      <SelectTrigger className="w-[280px]">
                         <SelectValue
                           defaultValue={field.value}
-                          placeholder="Select a color"
+                          placeholder="Selecciona un color"
                         />
                       </SelectTrigger>
                       <SelectContent>
@@ -292,7 +292,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
               name="sizeId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Size</FormLabel>
+                  <FormLabel>Talla</FormLabel>
                   <FormControl>
                     <Select
                       disabled={loading}
@@ -300,10 +300,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
                       value={field.value}
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="w-[180px]">
+                      <SelectTrigger className="w-[280px]">
                         <SelectValue
                           defaultValue={field.value}
-                          placeholder="Select a size"
+                          placeholder="Selecciona una talla"
                         />
                       </SelectTrigger>
                       <SelectContent>
@@ -332,9 +332,9 @@ const ProductForm: React.FC<ProductFormProps> = ({
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Featured</FormLabel>
+                    <FormLabel>Mostrar al inicio</FormLabel>
                     <FormDescription>
-                      This product will appear on the home page
+                      Este producto aparecerá en la página de inicio.
                     </FormDescription>
                   </div>
                 </FormItem>
@@ -353,9 +353,9 @@ const ProductForm: React.FC<ProductFormProps> = ({
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Archived</FormLabel>
+                    <FormLabel>Archivar</FormLabel>
                     <FormDescription>
-                      This product will not appear anywhere in the store
+                      Este producto no aparecera en ningun lugar de la tienda.
                     </FormDescription>
                   </div>
                 </FormItem>
