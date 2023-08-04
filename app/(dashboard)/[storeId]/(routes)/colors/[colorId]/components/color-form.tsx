@@ -40,10 +40,10 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? "Edit Colors" : "Create colors";
-  const description = initialData ? "Edit Colors" : "Add a new colors";
-  const toastMessage = initialData ? "Colors updated." : "Colors created";
-  const action = initialData ? "Save changes" : "Create";
+  const title = initialData ? "Editar Color" : "Crear color";
+  const description = initialData ? "Editar Color" : "Agregar nuevo color";
+  const toastMessage = initialData ? "Color actualizado." : "Color creado";
+  const action = initialData ? "Guardar cambios" : "Crear";
 
   const form = useForm<ColorFormValues>({
     resolver: zodResolver(formSchema),
@@ -58,18 +58,17 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
       setLoading(true);
       if (initialData) {
         await axios.patch(
-          `/api/${params.storeId}/colors/${params.colorsId}`,
+          `/api/${params.storeId}/colors/${params.colorId}`,
           data
         );
       } else {
-        console.log(data);
         await axios.post(`/api/${params.storeId}/colors`, data);
       }
       router.refresh();
       toast.success(toastMessage);
       router.push(`/${params.storeId}/colors`);
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Ha ocurrido un error. Contacta al equipo de soporte o intenta nuevamente.");
     } finally {
       setLoading(false);
     }
@@ -80,11 +79,11 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
       setLoading(true);
       await axios.delete(`/api/${params.storeId}/colors/${params.colorsId}`);
       router.refresh();
-      toast.success("Colors deleted.");
+      toast.success("Color eliminado.");
       router.push(`/${params.storeId}/colors`);
     } catch (error) {
       toast.error(
-        "Make sure you removed all categories using this colors first."
+        "Asegurate de haber eliminado antes todos los productos que usen este color"
       );
     } finally {
       setLoading(false);
@@ -127,11 +126,11 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Nombre</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Color name"
+                      placeholder="Nombre del color"
                       {...field}
                     />
                   </FormControl>
@@ -144,11 +143,11 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
               name="value"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Value</FormLabel>
+                  <FormLabel>Selecciona el color</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Color value" 
+                      placeholder="" 
                       className="w-60"
                       type="color"
                       {...field}

@@ -56,32 +56,32 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant={"ghost"} className="h-8 w-8 p-0">
-            <span className="sr-only">Open menu</span>
+            <span className="sr-only">Abrir menu</span>
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuLabel>Acciones</DropdownMenuLabel>
           <DropdownMenuItem
             onClick={() => onCopy(data.id)}
             className="gap-2 cursor-pointer"
           >
             <Copy className="mr-2 w-4 h-4" />
-            Copy Id
+            Copiar Id
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => router.push(`/${params.storeId}/colors/${data.id}`)}
             className="gap-2 cursor-pointer"
           >
             <Edit className="mr-2 w-4 h-4" />
-            Update
+            Actualizar
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => setOpen(true)}
             className="gap-2 cursor-pointer"
           >
             <Trash className="mr-2 w-4 h-4" />
-            Delete
+            Borrar
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -3,6 +3,7 @@ import React from "react";
 import ColorClient from "./components/client";
 import prismadb from "@/lib/prismadb";
 import { ColorColumn } from "./components/columns";
+import { es } from "date-fns/locale";
 
 const ColorsPage = async ({ params }: { params: { storeId: string } }) => {
   const colors = await prismadb.color.findMany({
@@ -18,7 +19,9 @@ const ColorsPage = async ({ params }: { params: { storeId: string } }) => {
     id: item.id,
     name: item.name,
     value: item.value,
-    createdAt: format(item.createdAt, "MMMM do, yyyy - HH:mm"),
+    createdAt: format(item.createdAt, "MMMM d, yyyy - HH:mm:ss aaaaa'm'", {
+      locale: es,
+    }),
   }));
 
   return (
