@@ -23,14 +23,14 @@ const BillboardClient: React.FC<BillboardClientProps> = ({
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Billboards (${data.length})`}
-          description="Manage billboards for your store"
+          title={`Imagenes de promocionales (${data.length})`}
+          description="Administra las imagenes de promocionales para tu tienda"
         />
         <Button
           onClick={() => router.push(`/${params.storeId}/billboards/new`)}
         >
           <Plus className="mr-2 h-4 w-4" />
-          Add New
+          Agregar Nuevo
         </Button>
       </div>
       <Separator />
@@ -38,10 +38,11 @@ const BillboardClient: React.FC<BillboardClientProps> = ({
         columns={columns}
         data={data}
         searchKey="label"
+        searchKeyEsp="titulo"
       />
       <Heading
         title="API"
-        description="API calls for billboards"
+        description="Llamadas del API para imagenes de promocionales"
       />
       <Separator />
 

@@ -18,32 +18,37 @@ export type ProductColumn = {
 export const columns: ColumnDef<ProductColumn>[] = [
   {
     accessorKey: "name",
-    header: "Name",
+    header: "Nombre",
   },
   {
     accessorKey: "isArchived",
-    header: "Archived",
-    // cell: ({row}) => (
-    //   <p className={`${row.original.isArchived ? "text-green-500" : "text-red-500"}`}>
-    //     {row.original.}
-    //   </p>
-    // )
+    header: "¿Archivar?",
+    cell: ({ row }) => (
+      <p className={`${row.original.isArchived ? "text-green-500" : "text-red-500"} font-semibold`}>
+        {row.original.isArchived ? "Si" : "No"}
+      </p>
+    ),
   },
   {
     accessorKey: "isFeatured",
-    header: "Featured",
+    header: "Mostrar al inicio",
+    cell: ({row}) => (
+      <p className={`${row.original.isFeatured ? "text-green-500" : "text-red-500"} font-semibold`}>
+        {row.original.isFeatured ? 'Si' : 'No'}
+      </p>
+    )
   },
   {
     accessorKey: "price",
-    header: "Price",
+    header: "Precio",
   },
   {
     accessorKey: "category",
-    header: "Category",
+    header: "Categoria",
   },
   {
     accessorKey: "size",
-    header: "Size",
+    header: "Tamaño",
   },
   {
     accessorKey: "color",
@@ -57,7 +62,7 @@ export const columns: ColumnDef<ProductColumn>[] = [
   },
   {
     accessorKey: "createdAt",
-    header: "Date",
+    header: "Fecha de creación",
   },
   {
     id: "actions",

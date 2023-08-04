@@ -41,7 +41,7 @@ export const StoreModal = () => {
       const response = await axios.post("/api/stores", values);
       window.location.assign(`/${response.data.id}`);
     } catch (error) {
-      toast.error("Something went wrong.");
+      toast.error("Ha ocurrido un error. Contacta al equipo de soporte o intentalo nuevamente.");
     } finally {
       setLoading(false);
     }
@@ -49,8 +49,8 @@ export const StoreModal = () => {
 
   return (
     <Modal
-      title="Create store"
-      description="Add a new store to manage products and categories"
+      title="Crear tienda"
+      description="Agregar una nueva tienda para gestionar productos y categorias."
       isOpen={storeModal.isOpen}
       onClose={storeModal.onClose}
     >
@@ -63,7 +63,7 @@ export const StoreModal = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>Nombre</FormLabel>
                     <FormControl>
                       <Input
                         disabled={loading}
@@ -81,10 +81,10 @@ export const StoreModal = () => {
                   variant="outline"
                   onClick={storeModal.onClose}
                 >
-                  Cancel
+                  Cancelar
                 </Button>
                 <Button disabled={loading} type="submit">
-                  Continue
+                  Continuar
                 </Button>
               </div>
             </form>

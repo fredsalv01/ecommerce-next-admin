@@ -50,10 +50,10 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
   });
 
   
-  const title = initialData ? "Edit billboard" : "Create billboard";
-  const description = initialData ? "Edit billboard" : "Add a new billboard";
-  const toastMessage = initialData ? "Billboard updated." : "Billboard created";
-  const action = initialData ? "Save changes" : "Create";  
+  const title = initialData ? "Editar imagen promocional" : "Crear imagen promocional";
+  const description = initialData ? "Editar imagen promocional" : "Agregar una nueva Imagen promocional";
+  const toastMessage = initialData ? "Imagen promocional actualizada." : "Imagen promocional creada";
+  const action = initialData ? "Guardar cambios" : "Crear";  
   
   const onSubmit = async (data: BillboardFormValues) => {
     try {
@@ -67,7 +67,7 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
       toast.success(toastMessage);
       router.push(`/${params.storeId}/billboards`)
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Ha ocurrido un error. Por favor contactate con equipo de soporte o intenta de nuevo.");
     } finally {
       setLoading(false);
     }
@@ -78,10 +78,10 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
       setLoading(true);
       await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
       router.refresh();
-      toast.success("Billboard deleted.");
+      toast.success("Imagen promocional borrada.");
       router.push(`/${params.storeId}/billboards`);
     } catch (error) {
-      toast.error("Make sure you removed all categories using this billboard first.");
+      toast.error("Asegurate de haber eliminado antes, todas las categorias que usen esta imagen promocional");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -122,7 +122,7 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
             name="imageUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Background Image</FormLabel>
+                <FormLabel>Imagen promocional</FormLabel>
                 <FormControl>
                   <ImageUpload
                     value={field.value ? [field.value] : []}
@@ -141,11 +141,11 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
               name="label"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Label</FormLabel>
+                  <FormLabel>Titulo</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Billboard label"
+                      placeholder="Titulo de imagen promocional"
                       {...field}
                     />
                   </FormControl>

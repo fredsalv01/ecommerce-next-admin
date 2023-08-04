@@ -3,6 +3,7 @@ import React from "react";
 import BillboardClient from "./components/client";
 import prismadb from "@/lib/prismadb";
 import { BillboardColumn } from "./components/columns";
+import { es } from "date-fns/locale";
 
 const BillboardsPage = async ({ params }: { params: { storeId: string } }) => {
   const billboards = await prismadb.billboard.findMany({
@@ -17,7 +18,9 @@ const BillboardsPage = async ({ params }: { params: { storeId: string } }) => {
   const formattedBillboards: BillboardColumn[] = billboards.map((item) => ({
     id: item.id,
     label: item.label,
-    createdAt: format(item.createdAt, "MMMM do, yyyy - HH:mm"),
+    createdAt: format(item.createdAt, "MMMM d, yyyy - HH:mm:ss aaaaa'm'", {
+      locale: es,
+    }),
   }));
 
   return (
