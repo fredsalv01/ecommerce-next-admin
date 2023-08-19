@@ -31,6 +31,10 @@ export const columns: ColumnDef<OrderColumn>[] = [
     header: "Dirección",
   },
   {
+    accessorKey: "totalPrice",
+    header: "Precio total"
+  },
+  {
     accessorKey: "isPaid",
     header: "Pagado",
     cell: ({ row }) => (
