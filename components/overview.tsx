@@ -6,11 +6,6 @@ interface OverViewProps {
   data: any[];
 }
 
-interface CustomTooltipProps {
-  payload: any;
-  label: string;
-  active: boolean;
-}
 
 export const OverView: React.FC<OverViewProps> = ({
   data
@@ -31,6 +26,13 @@ export const OverView: React.FC<OverViewProps> = ({
           tickLine={false} 
           axisLine={false}
           tickFormatter={(value) => `S/ ${value}`}
+
+        />
+        <Tooltip 
+        labelClassName='dark:text-black' 
+        labelFormatter={(value) => `Ventas de ${value}`}
+        contentStyle={{backgroundColor: '#ffffff'}}
+        formatter={(value) => `S/ ${value}`}
         />
         <Bar dataKey="total" fill="#3498db" radius={[4, 4, 0, 0]} />
       </BarChart>
