@@ -6,6 +6,12 @@ interface OverViewProps {
   data: any[];
 }
 
+interface CustomTooltipProps {
+  payload: any;
+  label: string;
+  active: boolean;
+}
+
 export const OverView: React.FC<OverViewProps> = ({
   data
 }) => {
