@@ -2,7 +2,6 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/providers/modal-provider";
-import prismadb from "@/lib/prismadb";
 import { ToasterProvider } from "@/providers/toast-provider";
 import { esES } from "@clerk/localizations";
 import { ThemeProvider } from "@/providers/theme-provider";
@@ -26,7 +25,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="system"
             enableSystem
           >
             <ToasterProvider />

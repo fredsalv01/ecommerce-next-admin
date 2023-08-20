@@ -32,7 +32,6 @@ export const OverView: React.FC<OverViewProps> = ({
           axisLine={false}
           tickFormatter={(value) => `S/ ${value}`}
         />
-        <Tooltip />
         <Bar dataKey="total" fill="#3498db" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>

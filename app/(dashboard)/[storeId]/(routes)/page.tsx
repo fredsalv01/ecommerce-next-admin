@@ -75,7 +75,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
         <Card className="col-span-4">
           <CardHeader>
             <CardTitle>
-              Descripcion General
+              Ventas por mes
             </CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
